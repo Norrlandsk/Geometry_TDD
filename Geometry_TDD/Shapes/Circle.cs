@@ -13,16 +13,14 @@ namespace Geometry_TDD.Shapes
 
         public float Area()
         {
-            float area = MathF.PI * Radius*Radius;
-            area=MathF.Round(area);
-            return area;
+            float area = MathF.PI * Radius * Radius;
+            return MathF.Round(area);
         }
 
         public float Perimeter()
         {
             float perimeter = 2 * MathF.PI * Radius;
-            MathF.Round(perimeter);
-            return perimeter;
+            return MathF.Round(perimeter);
         }
     }
 }
