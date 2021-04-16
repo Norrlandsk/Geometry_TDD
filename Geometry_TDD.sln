@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.31112.23
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Geometry_TDD", "Geometry_TDD\Geometry_TDD.csproj", "{97751A10-DE82-4BE4-8487-A813E6A0DDE1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Geometry_TDD.Tests", "Geometry_TDDTests\Geometry_TDD.Tests.csproj", "{8E9ED61A-5126-4ABA-B9F5-E0991B1CFFD7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Geometry_TDD.Tests", "Geometry_TDDTests\Geometry_TDD.Tests.csproj", "{8E9ED61A-5126-4ABA-B9F5-E0991B1CFFD7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

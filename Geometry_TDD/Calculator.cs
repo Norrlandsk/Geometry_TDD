@@ -19,7 +19,7 @@ namespace Geometry_TDD
             return shape.Perimeter();
         }
 
-        public float GetPerimeter(List <IShape> shapes)
+        public float GetPerimeter(List<IShape> shapes)
         {
             float perimeter = 0;
 
