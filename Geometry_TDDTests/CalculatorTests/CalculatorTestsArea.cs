@@ -9,7 +9,7 @@ namespace Geometry_TDD.Tests
     {
         [DataTestMethod, TestCategory("Calculator")]
         [DynamicData(nameof(AreaTestCases), DynamicDataSourceType.Method)]
-        public void GetAreaTest_ShouldBeEqual(IShape shape, float expected)
+        public void GetAreaTest_ShouldBeEqual_WhenGivenCorrectData(IShape shape, float expected)
         {
             Calculator calculator = new Calculator();
             var actual = calculator.GetArea(shape);
@@ -17,13 +17,14 @@ namespace Geometry_TDD.Tests
         }
 
         [DataTestMethod, TestCategory("Calculator")]
-        [DynamicData(nameof(AreaTestCases), DynamicDataSourceType.Method)]
-        public void GetAreaTest_ShouldNotBeEqual(IShape shape, float expected)
+        [DynamicData(nameof(AreaTestBadValuesCases), DynamicDataSourceType.Method)]
+        public void GetAreaTest_ShouldBeEqual_WhenGivenBadData(IShape shape, float expected)
         {
             Calculator calculator = new Calculator();
             var actual = calculator.GetArea(shape);
-            Assert.AreNotEqual(expected, actual + 1);
+            Assert.AreEqual(expected, actual);
         }
+
 
         private static IEnumerable<object[]> AreaTestCases()
         {
@@ -31,6 +32,15 @@ namespace Geometry_TDD.Tests
             yield return new object[] { new Circle(15), 707f };
             yield return new object[] { new Square(15), 225f };
             yield return new object[] { new Triangle(10, 5), 25f };
+        }
+
+        private static IEnumerable<object[]> AreaTestBadValuesCases()
+        {
+            yield return new object[] { new Rectangle(float.PositiveInfinity, 5), 0f };
+            yield return new object[] { new Circle(float.NegativeInfinity), 0f };
+            yield return new object[] { new Square(float.MaxValue), 0f };
+            yield return new object[] { new Triangle(float.MinValue, 5), 0f };
+            yield return new object[] { new Triangle(-3, 5), 0f };
         }
     }
 }

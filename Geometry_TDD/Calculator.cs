@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace Geometry_TDD
 {
@@ -10,24 +6,50 @@ namespace Geometry_TDD
     {
         public float GetArea(IShape shape)
         {
-            return shape.Area();
-             
+            float result = 0;
+            if (shape != null)
+            {
+                result = shape.Area();
+                if (result is
+                    float.MinValue or
+                    float.MaxValue or
+                    float.PositiveInfinity or
+                    float.NegativeInfinity or
+                    < 0) { result = 0; }
+            }
+
+            return result;
         }
 
         public float GetPerimeter(IShape shape)
         {
-            return shape.Perimeter();
+            var result = shape.Perimeter();
+            if (result is
+                float.MinValue or
+                float.MaxValue or
+                float.PositiveInfinity or
+                float.NegativeInfinity or
+                < 0) { result = 0; }
+            return result;
         }
 
+
+        
         public float GetPerimeter(List<IShape> shapes)
         {
-            float perimeter = 0;
+            float result = 0;
 
             foreach (var shape in shapes)
             {
-                perimeter += shape.Perimeter();
+                result += shape.Perimeter();
             }
-            return perimeter;
+            if (result is
+                float.MinValue or
+                float.MaxValue or
+                float.PositiveInfinity or
+                float.NegativeInfinity or
+                < 0) { result = 0; }
+            return result;
         }
     }
 }
