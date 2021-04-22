@@ -29,7 +29,7 @@ namespace Geometry_TDD
             {
                 new Circle(5),new Rectangle(10,5),new Square(5), new Triangle(10,5)
             };
-            Console.WriteLine(calc.GetPerimeter(shapeList));
+            Console.WriteLine(Calculator.GetPerimeter(shapeList));
         }
     }
 }

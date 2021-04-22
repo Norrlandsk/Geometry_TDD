@@ -7,23 +7,23 @@ namespace Geometry_TDD.Tests.CalculatorTests
     [TestClass]
     public class CalculatorTestsPerimeterList
     {
-        [TestMethod, TestCategory("Calculator")]
+        [TestMethod, TestCategory("PerimeterList")]
         [DynamicData(nameof(PerimeterListTestCases), DynamicDataSourceType.Method)]
         public void GetPerimeterListTest_ShouldBeEqual_WhenGivenCorrectData(List<IShape> shapes, float expected)
         {
             Calculator calculator = new Calculator();
-            var actual = calculator.GetPerimeter(shapes);
+            var actual = Calculator.GetPerimeter(shapes);
             Assert.AreEqual(expected, actual);
         }
 
-        [TestMethod, TestCategory("Calculator")]
+        [TestMethod, TestCategory("PerimeterList")]
         [DynamicData(nameof(PerimeterListBadTestCases), DynamicDataSourceType.Method)]
-        public void GetPerimeterListTest_ShouldBeEqual_WhenGivenBadData(List<IShape> shapes, float expected)
+        public void GetPerimeterListTest_ShouldExcludeObjectFromCalculation_WhenObjectIsNull(List<IShape> shapes, float expected)
         {
-            //TODO: Fix so that it behaves as expected
+
             Calculator calculator = new Calculator();
-            var actual = calculator.GetPerimeter(shapes);
-            Assert.AreNotEqual(expected, actual);
+            var actual = Calculator.GetPerimeter(shapes);
+            Assert.AreEqual(expected, actual);
         }
 
         
@@ -37,11 +37,12 @@ namespace Geometry_TDD.Tests.CalculatorTests
 
         private static IEnumerable<object[]> PerimeterListBadTestCases()
         {
-            yield return new object[] { new List<IShape> { new Rectangle(float.MaxValue, 5), new Square(10), new Triangle(10, 5) }, 100f };
-            yield return new object[] { new List<IShape> { new Circle(float.MinValue), new Square(1), new Triangle(100, 34), new Rectangle(10, 5) }, 365f };
-            yield return new object[] { new List<IShape> { new Square(float.PositiveInfinity), new Square(10), new Triangle(120, 45) }, 708f };
-            yield return new object[] { new List<IShape> { new Circle(float.NegativeInfinity), new Square(10342), new Triangle(6543, 55) }, 63171f };
-            yield return new object[] { new List<IShape> { new Rectangle(-5,2), new Square(10342), new Triangle(6543, 55) }, 63171f };
+            yield return new object[] { new List<IShape> { null, new Square(10), new Triangle(10, 5) }, 70f };
+            yield return new object[] { new List<IShape> { null, new Square(1), new Triangle(100, 34), new Rectangle(10, 5) }, 334f };
+            yield return new object[] { new List<IShape> { new Square(5), null, new Triangle(120, 45) }, 380f };
+            yield return new object[] { new List<IShape> { new Circle(30), new Square(10342), null }, 41556f };
+            yield return new object[] { new List<IShape> { new Rectangle(-5,2), null, new Triangle(6543, 55) }, 19623f };
+            yield return new object[] { new List<IShape> { null, null, null }, 0f };
         }
     }
 }
