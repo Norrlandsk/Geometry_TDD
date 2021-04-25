@@ -4,14 +4,14 @@ using System.Collections.Generic;
 
 namespace Geometry_TDD.Tests
 {
-#pragma warning disable IDE0059 // Unnecessary assignment of a value
-
     /// <summary>
     /// Test class for GetPerimeter(IShape)
     /// </summary>
     [TestClass]
     public class CalculatorTestsPerimeter
     {
+        private readonly Calculator calculator = new();
+
         /// <summary>
         /// Validates GetPerimeter(IShape) returns correct calculation of perimeter
         /// </summary>
@@ -19,10 +19,9 @@ namespace Geometry_TDD.Tests
         /// <param name="expected"></param>
         [DataTestMethod, TestCategory("Perimeter")]
         [DynamicData(nameof(PerimeterTestCases), DynamicDataSourceType.Method)]
-        public void GetPerimeterTest_ShouldBeEqual_WhenGivenCorrectData(IShape shape, float expected)
+        public void GetPerimeterTest_ShouldCalculateCorrectly_WhenGivenValidData(IShape shape, float expected)
         {
-            Calculator calculator = new();
-            var actual = Calculator.GetPerimeter(shape);
+            var actual = calculator.GetPerimeter(shape);
             Assert.AreEqual(expected, actual);
         }
 
@@ -35,8 +34,7 @@ namespace Geometry_TDD.Tests
         [DataRow(null, 0f)]
         public void GetPerimeterTest_ShouldBeZero_WhenGivenNullObject(IShape shape, float expected)
         {
-            Calculator calculator = new();
-            var actual = Calculator.GetPerimeter(shape);
+            var actual = calculator.GetPerimeter(shape);
             Assert.AreEqual(expected, actual);
         }
 
@@ -48,6 +46,4 @@ namespace Geometry_TDD.Tests
             yield return new object[] { new Triangle(10, 5), 30f };
         }
     }
-
-#pragma warning restore IDE0059 // Unnecessary assignment of a value
 }

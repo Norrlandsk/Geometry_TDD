@@ -4,25 +4,24 @@ using System.Collections.Generic;
 
 namespace Geometry_TDD.Tests.CalculatorTests
 {
-#pragma warning disable IDE0059 // Unnecessary assignment of a value
-
     /// <summary>
     /// Test class for GetPerimeter(List&lt;IShape&gt;)
     /// </summary>
     [TestClass]
     public class CalculatorTestsPerimeterList
     {
+        private readonly Calculator calculator = new();
+
         /// <summary>
-        /// Validates GetPerimeter(List&lt;IShape&gt;) returns correct calculation of perimeters
+        /// Validates that GetPerimeter(List&lt;IShape&gt;) returns correct calculation of perimeters
         /// </summary>
         /// <param name="shapes"></param>
         /// <param name="expected"></param>
         [TestMethod, TestCategory("PerimeterList")]
         [DynamicData(nameof(PerimeterListTestCases), DynamicDataSourceType.Method)]
-        public void GetPerimeterListTest_ShouldBeEqual_WhenGivenCorrectData(List<IShape> shapes, float expected)
+        public void GetPerimeterListTest_ShouldCalculateCorrectly_WhenGivenValidData(List<IShape> shapes, float expected)
         {
-            Calculator calculator = new();
-            var actual = Calculator.GetPerimeter(shapes);
+            var actual = calculator.GetPerimeter(shapes);
             Assert.AreEqual(expected, actual);
         }
 
@@ -35,8 +34,7 @@ namespace Geometry_TDD.Tests.CalculatorTests
         [DynamicData(nameof(PerimeterListNullTestCases), DynamicDataSourceType.Method)]
         public void GetPerimeterListTest_ShouldExcludeObjectFromCalculation_WhenObjectIsNull(List<IShape> shapes, float expected)
         {
-            Calculator calculator = new();
-            var actual = Calculator.GetPerimeter(shapes);
+            var actual = calculator.GetPerimeter(shapes);
             Assert.AreEqual(expected, actual);
         }
 
@@ -58,6 +56,4 @@ namespace Geometry_TDD.Tests.CalculatorTests
             yield return new object[] { new List<IShape> { null, null, null }, 0f };
         }
     }
-
-#pragma warning restore IDE0059 // Unnecessary assignment of a value
 }

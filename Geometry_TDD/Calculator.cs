@@ -2,20 +2,19 @@
 
 namespace Geometry_TDD
 {
-#pragma warning disable RCS1102 // Make class static.
-
+#pragma warning disable CA1822 // Mark members as static
     /// <summary>
     /// Calculator class for getting area and perimeter of IShape object
     /// </summary>
     public class Calculator
-
     {
         /// <summary>
         /// Gets area of IShape object
         /// </summary>
         /// <param name="shape"></param>
         /// <returns>float</returns>
-        public static float GetArea(IShape shape)
+        public float GetArea(IShape shape)
+
         {
             float result = 0;
             if (shape != null)
@@ -31,7 +30,7 @@ namespace Geometry_TDD
         /// </summary>
         /// <param name="shape"></param>
         /// <returns>float</returns>
-        public static float GetPerimeter(IShape shape)
+        public float GetPerimeter(IShape shape)
         {
             float result = 0;
             if (shape != null)
@@ -46,7 +45,7 @@ namespace Geometry_TDD
         /// </summary>
         /// <param name="shapes"></param>
         /// <returns>float</returns>
-        public static float GetPerimeter(List<IShape> shapes)
+        public float GetPerimeter(List<IShape> shapes)
         {
             float result = 0;
 
@@ -65,6 +64,5 @@ namespace Geometry_TDD
             return result;
         }
     }
-
-#pragma warning restore RCS1102 // Make class static.
+#pragma warning restore CA1822 // Mark members as static
 }

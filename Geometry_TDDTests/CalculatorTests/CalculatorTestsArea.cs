@@ -4,14 +4,14 @@ using System.Collections.Generic;
 
 namespace Geometry_TDD.Tests
 {
-#pragma warning disable IDE0059 // Unnecessary assignment of a value
-
     /// <summary>
     /// Test class for GetArea(IShape)
     /// </summary>
     [TestClass]
     public class CalculatorTestsArea
     {
+        private readonly Calculator calculator = new();
+
         /// <summary>
         /// Validates GetArea(IShape) returns correct calculation of area
         /// </summary>
@@ -19,11 +19,9 @@ namespace Geometry_TDD.Tests
         /// <param name="expected"></param>
         [DataTestMethod, TestCategory("Area")]
         [DynamicData(nameof(AreaTestCases), DynamicDataSourceType.Method)]
-        public void GetAreaTest_ShouldBeEqual_WhenGivenCorrectData(IShape shape, float expected)
+        public void GetAreaTest_ShouldCalculateCorrectly_WhenGivenValidData(IShape shape, float expected)
         {
-            Calculator calculator = new();
-
-            var actual = Calculator.GetArea(shape);
+            var actual = calculator.GetArea(shape);
             Assert.AreEqual(expected, actual);
         }
 
@@ -36,8 +34,7 @@ namespace Geometry_TDD.Tests
         [DataRow(null, 0f)]
         public void GetAreaTest_ShouldBeZero_WhenGivenNullObject(IShape shape, float expected)
         {
-            Calculator calculator = new();
-            var actual = Calculator.GetArea(shape);
+            var actual = calculator.GetArea(shape);
             Assert.AreEqual(expected, actual);
         }
 
@@ -49,6 +46,4 @@ namespace Geometry_TDD.Tests
             yield return new object[] { new Triangle(10, 5), 25f };
         }
     }
-
-#pragma warning restore IDE0059 // Unnecessary assignment of a value
 }
